@@ -18,4 +18,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: gh-pages # Название ветки, куда будут загружены файлы
-          folder: .       # Папка, откуда брать файлы для деплоя
+          folder: ./       # Папка, откуда брать файлы для деплоя

@@ -1,0 +1,21 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Опубликовать статический сайт
+      - name: Build and Deploy
+        uses: JamesIves/github-pages-deploy-action@reusable
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: gh-pages # Название ветки, куда будут загружены файлы
+          folder: .       # Папка, откуда брать файлы для деплоя

@@ -6,16 +6,26 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Full history needed for proper deployment
+
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: gh-pages
-          folder: ./
-          force_orphan: true 
+          folder: ./build  # Change this path based on where static files are generated
+          clean: true       # Clean target directory before pushing new content
+          force_orphan: true
+          
+      - name: Show logs after failure
+        if: failure()
+        run: |
+          echo "Last few lines of output:"
+          cat /home/runner/work/_temp/*.log | tail -n 10

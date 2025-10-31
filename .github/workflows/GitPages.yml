@@ -11,12 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      # Опубликовать статический сайт
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           branch: gh-pages
-          folder: .
+          folder: ./
           force_orphan: true 

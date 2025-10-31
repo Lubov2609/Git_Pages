@@ -17,5 +17,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          branch: gh-pages # Название ветки, куда будут загружены файлы
-          folder: ./       # Папка, откуда брать файлы для деплоя
+          branch: gh-pages
+          folder: .
+          force_orphan: true 
